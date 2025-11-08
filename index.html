@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants vs TmkaTimofey - Зимняя версия</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #0a1a2a, #1a3a5a);
+            color: #e0f0ff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(20, 40, 60, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(100, 180, 255, 0.3);
+            border: 2px solid #4da6ff;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #4da6ff, 0 0 20px #0066cc;
+            color: #b3e0ff;
+            letter-spacing: 2px;
+        }
+        
+        .schedule {
+            background-color: rgba(30, 60, 90, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 1px solid #4da6ff;
+            box-shadow: 0 0 15px rgba(100, 180, 255, 0.4);
+        }
+        
+        .schedule h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #b3e0ff;
+            text-shadow: 0 0 5px #4da6ff;
+        }
+        
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(40, 80, 120, 0.6);
+            border-radius: 8px;
+            font-size: 1.3rem;
+        }
+        
+        .day {
+            font-weight: bold;
+            color: #b3e0ff;
+        }
+        
+        .time {
+            color: #80ccff;
+        }
+        
+        .update-info {
+            font-size: 1.5rem;
+            margin: 25px 0;
+            padding: 15px;
+            background-color: rgba(40, 80, 120, 0.6);
+            border-radius: 8px;
+            color: #b3e0ff;
+            text-shadow: 0 0 5px #4da6ff;
+        }
+        
+        .update-details {
+            background-color: rgba(30, 60, 90, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 1px solid #4da6ff;
+            box-shadow: 0 0 15px rgba(100, 180, 255, 0.4);
+            text-align: left;
+        }
+        
+        .update-details h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #b3e0ff;
+            text-shadow: 0 0 5px #4da6ff;
+            text-align: center;
+        }
+        
+        .update-details ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .update-details li {
+            margin: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.2rem;
+        }
+        
+        .update-details li:before {
+            content: "❄";
+            position: absolute;
+            left: 0;
+            color: #4da6ff;
+        }
+        
+        .update-time {
+            font-size: 1.3rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(to right, #4da6ff, #0066cc);
+            border-radius: 8px;
+            color: #fff;
+            text-shadow: 0 0 5px #000;
+            font-weight: bold;
+        }
+        
+        .telegram-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(to bottom, #4da6ff, #0066cc);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(100, 180, 255, 0.7);
+        }
+        
+        .telegram-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(100, 180, 255, 0.9);
+        }
+        
+        /* Новогодние украшения по углам */
+        .decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            z-index: 5;
+        }
+        
+        .decoration-top-left {
+            top: 20px;
+            left: 20px;
+        }
+        
+        .decoration-top-right {
+            top: 20px;
+            right: 20px;
+        }
+        
+        .decoration-bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+        
+        .decoration-bottom-right {
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        /* Снежинки */
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 1.5rem;
+            top: -20px;
+            animation: fall linear infinite;
+            z-index: 1;
+            text-shadow: 0 0 5px #b3e0ff;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Блуждающие огоньки */
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #b3e0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #b3e0ff;
+            animation: wander 15s infinite ease-in-out;
+            z-index: 2;
+        }
+        
+        @keyframes wander {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(100px, 50px);
+            }
+            50% {
+                transform: translate(50px, 100px);
+            }
+            75% {
+                transform: translate(-50px, 80px);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .schedule h2, .update-details h2 {
+                font-size: 1.7rem;
+            }
+            
+            .schedule-item {
+                font-size: 1.1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .decoration {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .decoration {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Новогодние украшения по углам -->
+    <div class="decoration decoration-top-left">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="#ff4d4d" stroke="#ffcc00" stroke-width="3"/>
+            <circle cx="50" cy="50" r="35" fill="#ff6666" />
+            <circle cx="50" cy="50" r="25" fill="#ff9999" />
+            <rect x="48" y="10" width="4" height="25" fill="#ffcc00" />
+        </svg>
+    </div>
+    
+    <div class="decoration decoration-top-right">
+        <svg viewBox="0 0 100 100">
+            <rect x="20" y="20" width="60" height="60" fill="#4da6ff" stroke="#b3e0ff" stroke-width="3"/>
+            <rect x="30" y="30" width="40" height="40" fill="#80ccff" />
+            <rect x="40" y="40" width="20" height="20" fill="#b3e0ff" />
+            <polygon points="50,10 53,30 47,30" fill="#ffcc00" />
+        </svg>
+    </div>
+    
+    <div class="decoration decoration-bottom-left">
+        <svg viewBox="0 0 100 100">
+            <path d="M30,20 L70,20 L80,50 L70,80 L30,80 L20,50 Z" fill="#4dff88" stroke="#b3e0ff" stroke-width="3"/>
+            <circle cx="50" cy="50" r="15" fill="#80ffaa" />
+            <rect x="48" y="80" width="4" height="15" fill="#ffcc00" />
+        </svg>
+    </div>
+    
+    <div class="decoration decoration-bottom-right">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="#ffcc00" stroke="#ff9900" stroke-width="3"/>
+            <rect x="30" y="30" width="40" height="40" rx="5" fill="#ffe066" />
+            <rect x="40" y="40" width="20" height="20" rx="3" fill="#fff" />
+            <polygon points="50,10 55,25 70,25 58,35 63,50 50,40 37,50 42,35 30,25 45,25" fill="#ff6666" />
+        </svg>
+    </div>
+    
+    <!-- Основной контент -->
+    <div class="container">
+        <h1>Plants vs TmkaTimofey</h1>
+        
+        <div class="schedule">
+            <h2>Расписание админ абьюзов</h2>
+            <div class="schedule-item">
+                <span class="day">Воскресенье</span>
+                <span class="time">12:00 по мск</span>
+            </div>
+            <div class="schedule-item">
+                <span class="day">Тако-Вторник</span>
+                <span class="time">14:00 по мск</span>
+            </div>
+        </div>
+        
+        <div class="update-info">
+            Обновления каждое воскресенье! - Так что жду вас!
+        </div>
+        
+        <div class="update-details">
+            <h2>Что будет доступно в обновлении:</h2>
+            <ul>
+                <li>Новые украшения на карте</li>
+                <li>Новый вайб</li>
+                <li>Новый брейнрот (DeadLess)</li>
+                <li>Новое крутое секретное растение (PlayingMang)</li>
+                <li>Новый ивент-погода! (Ивент с Татошкой)</li>
+                <li>Дофига много крутых штук, Новая атмосфера!</li>
+            </ul>
+            <div class="update-time">
+                Обновление будет доступно 13:00 по мск, Успевайте - потому-что на обновление будет Админ абьюз, который вы любите!
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; font-size: 1.3rem;">
+            Всем чау..
+        </div>
+        
+        <a href="https://t.me/PlantsvsTmkaTimofey" class="telegram-link" target="_blank">
+            Мой телеграм канал
+        </a>
+    </div>
+
+    <script>
+        // Создаем снежинки
+        function createSnowflakes() {
+            const body = document.querySelector('body');
+            const snowflakeCount = 50;
+            const snowflakeSymbols = ['❄', '❅', '❆'];
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                
+                // Случайная позиция и размер
+                const left = Math.random() * 100;
+                const size = 0.5 + Math.random() * 1.5;
+                const animationDuration = 10 + Math.random() * 20;
+                const animationDelay = Math.random() * 20;
+                const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                
+                snowflake.style.left = `${left}vw`;
+                snowflake.style.fontSize = `${size}rem`;
+                snowflake.style.animationDuration = `${animationDuration}s`;
+                snowflake.style.animationDelay = `${animationDelay}s`;
+                snowflake.textContent = symbol;
+                
+                body.appendChild(snowflake);
+            }
+        }
+        
+        // Создаем блуждающие огоньки
+        function createSparkles() {
+            const body = document.querySelector('body');
+            const sparkleCount = 8;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                // Случайная начальная позиция
+                const top = Math.random() * 100;
+                const left = Math.random() * 100;
+                const animationDelay = Math.random() * 15;
+                
+                sparkle.style.top = `${top}vh`;
+                sparkle.style.left = `${left}vw`;
+                sparkle.style.animationDelay = `${animationDelay}s`;
+                
+                body.appendChild(sparkle);
+            }
+        }
+        
+        // Запускаем создание декоративных элементов после загрузки страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            createSnowflakes();
+            createSparkles();
+        });
+    </script>
+</body>
+</html>
