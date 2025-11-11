@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хэллоуинские зимние кейсы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --halloween-orange: #FF7518;
+            --halloween-purple: #4B0082;
+            --winter-blue: #1E3A8A;
+            --winter-white: #F0F8FF;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --dark-bg: #0f0f1e;
+            --card-bg: rgba(30, 30, 60, 0.7);
+            --common: #a0a0a0;
+            --uncommon: #1eff00;
+            --rare: #0070dd;
+            --epic: #a335ee;
+            --legendary: #ff8000;
+            --mythical: #e5cc80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-bg), var(--halloween-purple), var(--winter-blue));
+            color: var(--winter-white);
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            border: 2px solid var(--halloween-orange);
+            box-shadow: 0 0 20px rgba(255, 117, 24, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--halloween-orange), var(--gold), var(--halloween-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: title-glow 3s infinite alternate;
+        }
+
+        @keyframes title-glow {
+            0% { text-shadow: 0 0 10px rgba(255, 117, 24, 0.7); }
+            100% { text-shadow: 0 0 20px rgba(255, 117, 24, 1), 0 0 30px rgba(255, 215, 0, 0.7); }
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid var(--halloween-orange);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .coins {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--gold);
+        }
+
+        .coins i {
+            color: var(--gold);
+            margin-right: 10px;
+            animation: coin-spin 5s infinite linear;
+        }
+
+        @keyframes coin-spin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .user-details {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(to bottom, var(--halloween-orange), #e65c00);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #b34700;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b34700;
+            background: linear-gradient(to bottom, #ff8c42, #e65c00);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--halloween-orange);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab.active {
+            background: var(--halloween-orange);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab:hover:not(.active) {
+            background: rgba(255, 117, 24, 0.3);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold);
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--halloween-orange);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            min-height: 500px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .case {
+            background: linear-gradient(135deg, var(--halloween-purple), var(--winter-blue));
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--halloween-orange);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .case::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--halloween-orange), var(--gold), var(--halloween-purple), var(--winter-blue));
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .case:hover::before {
+            opacity: 0.3;
+        }
+
+        .case:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .case-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+        }
+
+        .case-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .case-price {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        .open-case-btn {
+            background: linear-gradient(to bottom, var(--halloween-orange), #e65c00);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 0 #b34700;
+            font-size: 1.1rem;
+        }
+
+        .open-case-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b34700;
+            background: linear-gradient(to bottom, #ff8c42, #e65c00);
+        }
+
+        .open-case-btn:disabled {
+            background: #666;
+            box-shadow: 0 4px 0 #444;
+            cursor: not-allowed;
+        }
+
+        .open-case-btn:disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 0 #444;
+        }
+
+        .case-opening {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        .case-opening.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .case-opening-content {
+            background: linear-gradient(135deg, var(--halloween-purple), var(--winter-blue));
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 900px;
+            width: 95%;
+            border: 3px solid var(--halloween-orange);
+            position: relative;
+            box-shadow: 0 0 50px rgba(255, 117, 24, 0.7);
+        }
+
+        .roulette-container {
+            display: flex;
+            overflow: hidden;
+            height: 180px;
+            margin: 30px 0;
+            border: 3px solid var(--halloween-orange);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .roulette-slider {
+            display: flex;
+            transition: transform 5s cubic-bezier(0.1, 0.7, 0.3, 1);
+        }
+
+        .roulette-item {
+            min-width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 2px solid;
+            transition: all 0.3s;
+        }
+
+        .roulette-item.common { border-color: var(--common); }
+        .roulette-item.uncommon { border-color: var(--uncommon); }
+        .roulette-item.rare { border-color: var(--rare); }
+        .roulette-item.epic { border-color: var(--epic); }
+        .roulette-item.legendary { border-color: var(--legendary); }
+        .roulette-item.mythical { border-color: var(--mythical); }
+
+        .roulette-item.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px currentColor;
+            z-index: 10;
+        }
+
+        .item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+        }
+
+        .item-name {
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 0 5px;
+        }
+
+        .close-case-opening {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-case-opening:hover {
+            transform: scale(1.2);
+            color: var(--halloween-orange);
+        }
+
+        .promocode-form {
+            display: flex;
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+
+        .promocode-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px 0 0 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            border: 2px solid var(--halloween-orange);
+            border-right: none;
+        }
+
+        .promocode-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .promocode-submit {
+            background: linear-gradient(to bottom, var(--halloween-orange), #e65c00);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 10px 10px 0;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 0 #b34700;
+            transition: all 0.3s;
+        }
+
+        .promocode-submit:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b34700;
+            background: linear-gradient(to bottom, #ff8c42, #e65c00);
+        }
+
+        .inventory {
+            margin-top: 30px;
+        }
+
+        .inventory h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .inventory-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .inventory-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .inventory-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .inventory-item.common { border-color: var(--common); }
+        .inventory-item.uncommon { border-color: var(--uncommon); }
+        .inventory-item.rare { border-color: var(--rare); }
+        .inventory-item.epic { border-color: var(--epic); }
+        .inventory-item.legendary { border-color: var(--legendary); }
+        .inventory-item.mythical { border-color: var(--mythical); }
+
+        .sell-btn {
+            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #a93226;
+            transition: all 0.3s;
+        }
+
+        .sell-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #a93226;
+            background: linear-gradient(to bottom, #ff6b5b, #c0392b);
+        }
+
+        .auth-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 450px;
+            margin: 50px auto;
+            border: 2px solid var(--halloween-orange);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--halloween-orange);
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 117, 24, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--halloween-orange);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--halloween-orange);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .auth-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to bottom, var(--halloween-orange), #e65c00);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            box-shadow: 0 4px 0 #b34700;
+            transition: all 0.3s;
+        }
+
+        .auth-submit:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b34700;
+            background: linear-gradient(to bottom, #ff8c42, #e65c00);
+        }
+
+        .switch-auth {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .switch-auth a {
+            color: var(--halloween-orange);
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .switch-auth a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .snowflake {
+            color: white;
+            text-shadow: 0 0 5px white;
+        }
+
+        .pumpkin {
+            color: var(--halloween-orange);
+            text-shadow: 0 0 5px var(--halloween-orange);
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success {
+            background: rgba(46, 204, 113, 0.3);
+            border: 2px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .error {
+            background: rgba(231, 76, 60, 0.3);
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--halloween-orange);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .item-rarity {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .common { color: var(--common); }
+        .uncommon { color: var(--uncommon); }
+        .rare { color: var(--rare); }
+        .epic { color: var(--epic); }
+        .legendary { color: var(--legendary); }
+        .mythical { color: var(--mythical); }
+
+        .index-section {
+            margin-top: 30px;
+        }
+
+        .index-section h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .collection-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid;
+            transition: all 0.3s;
+            opacity: 0.5;
+        }
+
+        .collection-item.owned {
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px currentColor;
+        }
+
+        .collection-item.common { border-color: var(--common); }
+        .collection-item.uncommon { border-color: var(--uncommon); }
+        .collection-item.rare { border-color: var(--rare); }
+        .collection-item.epic { border-color: var(--epic); }
+        .collection-item.legendary { border-color: var(--legendary); }
+        .collection-item.mythical { border-color: var(--mythical); }
+
+        .win-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .win-animation.active {
+            opacity: 1;
+        }
+
+        .win-content {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 50px var(--gold);
+            transform: scale(0.5);
+            transition: transform 0.5s;
+        }
+
+        .win-animation.active .win-content {
+            transform: scale(1);
+        }
+
+        .win-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .win-text {
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .cases-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .inventory-items {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Аутентификация -->
+        <div id="auth-section" class="auth-form">
+            <h2>Вход / Регистрация</h2>
+            <div id="auth-message"></div>
+            <div class="form-group">
+                <label for="username">Никнейм</label>
+                <input type="text" id="username" placeholder="Введите никнейм">
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="Введите пароль">
+            </div>
+            <button id="auth-submit" class="auth-submit">Войти</button>
+            <div class="switch-auth">
+                <a id="switch-auth-link">Нет аккаунта? Зарегистрируйтесь</a>
+            </div>
+        </div>
+
+        <!-- Основной контент (скрыт до авторизации) -->
+        <div id="main-content" style="display: none;">
+            <header>
+                <h1>Хэллоуинские Зимние Кейсы</h1>
+                <p>Открывайте кейсы и получайте уникальные предметы!</p>
+            </header>
+
+            <div class="user-info">
+                <div class="coins">
+                    <i class="fas fa-coins"></i> <span id="coins-count">0</span> монет
+                </div>
+                <div class="user-details">
+                    <div>Добро пожаловать, <span id="user-name"></span>!</div>
+                    <button class="logout-btn" id="logout-btn">Выйти</button>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="total-cases">0</div>
+                    <div class="stat-label">Открыто кейсов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="total-items">0</div>
+                    <div class="stat-label">Получено предметов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="unique-items">0</div>
+                    <div class="stat-label">Уникальных предметов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="total-value">0</div>
+                    <div class="stat-label">Общая стоимость</div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="cases">Кейсы</div>
+                <div class="tab" data-tab="inventory">Инвентарь</div>
+                <div class="tab" data-tab="collection">Коллекция</div>
+                <div class="tab" data-tab="promocodes">Промокоды</div>
+            </div>
+
+            <div class="tab-content active" id="cases-tab">
+                <div class="cases-grid" id="cases-container">
+                    <!-- Кейсы будут добавлены через JavaScript -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="inventory-tab">
+                <div class="inventory">
+                    <h3>Ваш инвентарь</h3>
+                    <div class="inventory-items" id="inventory-container">
+                        <!-- Предметы инвентаря будут добавлены через JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="collection-tab">
+                <div class="index-section">
+                    <h3>Коллекция предметов</h3>
+                    <div class="collection-grid" id="collection-container">
+                        <!-- Все предметы игры будут добавлены через JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="promocodes-tab">
+                <div class="promocode-form">
+                    <input type="text" class="promocode-input" id="promocode-input" placeholder="Введите промокод">
+                    <button class="promocode-submit" id="promocode-submit">Активировать</button>
+                </div>
+                <div id="promocode-message"></div>
+                
+                <div class="inventory">
+                    <h3>Активированные промокоды</h3>
+                    <div id="used-promocodes-container">
+                        <!-- Использованные промокоды будут добавлены через JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Окно открытия кейса с рулеткой -->
+        <div class="case-opening" id="case-opening">
+            <div class="case-opening-content">
+                <button class="close-case-opening" id="close-case-opening">×</button>
+                <h2>Открытие кейса</h2>
+                <div class="roulette-container">
+                    <div class="roulette-slider" id="roulette-slider">
+                        <!-- Предметы рулетки будут добавлены через JavaScript -->
+                    </div>
+                </div>
+                <button class="open-case-btn" id="spin-roulette">Крутить рулетку</button>
+                <p id="case-result"></p>
+            </div>
+        </div>
+
+        <!-- Анимация выигрыша -->
+        <div class="win-animation" id="win-animation">
+            <div class="win-content">
+                <div class="win-icon" id="win-icon"></div>
+                <div class="win-text" id="win-text">Поздравляем!</div>
+                <div class="item-name" id="win-item-name"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данные игры
+        const gameData = {
+            cases: [
+                { id: 1, name: "Призрачный кейс", price: 3, icon: "👻" },
+                { id: 2, name: "Тыквенный кейс", price: 5, icon: "🎃" },
+                { id: 3, name: "Снежный кейс", price: 8, icon: "❄️" },
+                { id: 4, name: "Ледяной кейс", price: 12, icon: "🧊" },
+                { id: 5, name: "Ведьмин кейс", price: 17, icon: "🧙" },
+                { id: 6, name: "Метельный кейс", price: 23, icon: "🌨️" },
+                { id: 7, name: "Зомби кейс", price: 30, icon: "🧟" },
+                { id: 8, name: "Снеговик кейс", price: 38, icon: "⛄" },
+                { id: 9, name: "Вампирский кейс", price: 47, icon: "🦇" },
+                { id: 10, name: "Полярный кейс", price: 57, icon: "🌌" },
+                { id: 11, name: "Оборотень кейс", price: 68, icon: "🐺" },
+                { id: 12, name: "Морозный кейс", price: 80, icon: "🥶" },
+                { id: 13, name: "Призрачный особняк", price: 93, icon: "🏚️" },
+                { id: 14, name: "Ледяной замок", price: 107, icon: "🏰" },
+                { id: 15, name: "Кошмарный кейс", price: 122, icon: "😱" },
+                { id: 16, name: "Легендарный кейс", price: 138, icon: "👑" }
+            ],
+            items: [
+                { id: 1, name: "Призрачная свеча", rarity: "common", value: 1, icon: "🕯️" },
+                { id: 2, name: "Снежинка", rarity: "common", value: 1, icon: "❄️" },
+                { id: 3, name: "Маленькая тыква", rarity: "common", value: 2, icon: "🎃" },
+                { id: 4, name: "Ледяной осколок", rarity: "common", value: 2, icon: "🧊" },
+                { id: 5, name: "Паутина", rarity: "uncommon", value: 5, icon: "🕸️" },
+                { id: 6, name: "Снежный ком", rarity: "uncommon", value: 5, icon: "☃️" },
+                { id: 7, name: "Ведро с конфетами", rarity: "uncommon", value: 8, icon: "🍬" },
+                { id: 8, name: "Теплые варежки", rarity: "uncommon", value: 8, icon: "🧤" },
+                { id: 9, name: "Шляпа ведьмы", rarity: "rare", value: 15, icon: "🧙" },
+                { id: 10, name: "Ледяной жезл", rarity: "rare", value: 15, icon: "❄️" },
+                { id: 11, name: "Зуб вампира", rarity: "rare", value: 20, icon: "🦇" },
+                { id: 12, name: "Снежная сова", rarity: "rare", value: 20, icon: "🦉" },
+                { id: 13, name: "Призрачный плащ", rarity: "epic", value: 40, icon: "👻" },
+                { id: 14, name: "Ледяной меч", rarity: "epic", value: 40, icon: "⚔️" },
+                { id: 15, name: "Клык оборотня", rarity: "epic", value: 50, icon: "🐺" },
+                { id: 16, name: "Снежный дракон", rarity: "epic", value: 50, icon: "🐉" },
+                { id: 17, name: "Тыква короля", rarity: "legendary", value: 100, icon: "🎃" },
+                { id: 18, name: "Ледяная корона", rarity: "legendary", value: 100, icon: "👑" },
+                { id: 19, name: "Сердце зомби", rarity: "mythical", value: 200, icon: "🧟" },
+                { id: 20, name: "Вечная зима", rarity: "mythical", value: 200, icon: "🌨️" }
+            ],
+            promocodes: [
+                { code: "HALLOWEEN2023", coins: 50 },
+                { code: "WINTERMAGIC", coins: 30 },
+                { code: "FIRSTCASE", coins: 20 },
+                { code: "SPOOKYSEASON", coins: 40 },
+                { code: "SNOWANGEL", coins: 25 },
+                { code: "PUMPKINSPICE", coins: 35 }
+            ]
+        };
+
+        // Состояние пользователя
+        let userState = {
+            isLoggedIn: false,
+            username: "",
+            coins: 0,
+            inventory: [],
+            usedPromocodes: [],
+            stats: {
+                casesOpened: 0,
+                totalItems: 0,
+                uniqueItems: 0,
+                totalValue: 0
+            },
+            collection: []
+        };
+
+        // DOM элементы
+        const authSection = document.getElementById('auth-section');
+        const mainContent = document.getElementById('main-content');
+        const authSubmit = document.getElementById('auth-submit');
+        const switchAuthLink = document.getElementById('switch-auth-link');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const logoutBtn = document.getElementById('logout-btn');
+        const coinsCount = document.getElementById('coins-count');
+        const userName = document.getElementById('user-name');
+        const casesContainer = document.getElementById('cases-container');
+        const inventoryContainer = document.getElementById('inventory-container');
+        const collectionContainer = document.getElementById('collection-container');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const caseOpening = document.getElementById('case-opening');
+        const rouletteSlider = document.getElementById('roulette-slider');
+        const closeCaseOpening = document.getElementById('close-case-opening');
+        const caseResult = document.getElementById('case-result');
+        const promocodeInput = document.getElementById('promocode-input');
+        const promocodeSubmit = document.getElementById('promocode-submit');
+        const promocodeMessage = document.getElementById('promocode-message');
+        const authMessage = document.getElementById('auth-message');
+        const spinRouletteBtn = document.getElementById('spin-roulette');
+        const winAnimation = document.getElementById('win-animation');
+        const winIcon = document.getElementById('win-icon');
+        const winText = document.getElementById('win-text');
+        const winItemName = document.getElementById('win-item-name');
+        const totalCases = document.getElementById('total-cases');
+        const totalItems = document.getElementById('total-items');
+        const uniqueItems = document.getElementById('unique-items');
+        const totalValue = document.getElementById('total-value');
+        const usedPromocodesContainer = document.getElementById('used-promocodes-container');
+
+        // Переменные для рулетки
+        let currentCaseId = null;
+        let isSpinning = false;
+        let rouletteItems = [];
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            // Проверяем, есть ли сохраненные данные пользователя
+            const savedUser = localStorage.getItem('caseUser');
+            if (savedUser) {
+                userState = JSON.parse(savedUser);
+                if (userState.isLoggedIn) {
+                    showMainContent();
+                }
+            }
+
+            // Добавляем обработчики событий
+            authSubmit.addEventListener('click', handleAuth);
+            switchAuthLink.addEventListener('click', switchAuthMode);
+            logoutBtn.addEventListener('click', logout);
+            closeCaseOpening.addEventListener('click', () => {
+                caseOpening.classList.remove('active');
+            });
+            promocodeSubmit.addEventListener('click', activatePromocode);
+            spinRouletteBtn.addEventListener('click', spinRoulette);
+
+            // Обработчики для вкладок
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+
+            // Создаем декоративные элементы
+            createDecorations();
+        }
+
+        function createDecorations() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 25; i++) {
+                const decoration = document.createElement('div');
+                decoration.className = 'decoration';
+                
+                // Чередуем снежинки и тыквы
+                if (i % 2 === 0) {
+                    decoration.className += ' snowflake';
+                    decoration.innerHTML = '❄️';
+                } else {
+                    decoration.className += ' pumpkin';
+                    decoration.innerHTML = '🎃';
+                }
+                
+                // Случайное позиционирование и анимация
+                decoration.style.left = `${Math.random() * 100}%`;
+                decoration.style.top = `${Math.random() * 100}%`;
+                decoration.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
+                decoration.style.animationDelay = `${Math.random() * 10}s`;
+                decoration.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                
+                container.appendChild(decoration);
+            }
+        }
+
+        function handleAuth() {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!username || !password) {
+                showAuthMessage('Пожалуйста, заполните все поля', 'error');
+                return;
+            }
+
+            if (authSubmit.textContent === 'Войти') {
+                login(username, password);
+            } else {
+                register(username, password);
+            }
+        }
+
+        function switchAuthMode() {
+            if (authSubmit.textContent === 'Войти') {
+                authSubmit.textContent = 'Зарегистрироваться';
+                switchAuthLink.textContent = 'Уже есть аккаунт? Войдите';
+                document.querySelector('#auth-section h2').textContent = 'Регистрация';
+            } else {
+                authSubmit.textContent = 'Войти';
+                switchAuthLink.textContent = 'Нет аккаунта? Зарегистрируйтесь';
+                document.querySelector('#auth-section h2').textContent = 'Вход';
+            }
+            authMessage.textContent = '';
+        }
+
+        function login(username, password) {
+            // В реальном приложении здесь была бы проверка с сервером
+            const users = JSON.parse(localStorage.getItem('caseUsers') || '{}');
+            
+            if (users[username] && users[username].password === password) {
+                userState = {
+                    isLoggedIn: true,
+                    username: username,
+                    coins: users[username].coins,
+                    inventory: users[username].inventory || [],
+                    usedPromocodes: users[username].usedPromocodes || [],
+                    stats: users[username].stats || {
+                        casesOpened: 0,
+                        totalItems: 0,
+                        uniqueItems: 0,
+                        totalValue: 0
+                    },
+                    collection: users[username].collection || []
+                };
+                
+                localStorage.setItem('caseUser', JSON.stringify(userState));
+                showMainContent();
+                showAuthMessage('Успешный вход!', 'success');
+            } else {
+                showAuthMessage('Неверный никнейм или пароль', 'error');
+            }
+        }
+
+        function register(username, password) {
+            const users = JSON.parse(localStorage.getItem('caseUsers') || '{}');
+            
+            if (users[username]) {
+                showAuthMessage('Этот никнейм уже занят', 'error');
+                return;
+            }
+            
+            // Создаем нового пользователя с начальным балансом
+            users[username] = {
+                password: password,
+                coins: 16, // Начальные монеты
+                inventory: [],
+                usedPromocodes: [],
+                stats: {
+                    casesOpened: 0,
+                    totalItems: 0,
+                    uniqueItems: 0,
+                    totalValue: 0
+                },
+                collection: []
+            };
+            
+            localStorage.setItem('caseUsers', JSON.stringify(users));
+            
+            userState = {
+                isLoggedIn: true,
+                username: username,
+                coins: 16,
+                inventory: [],
+                usedPromocodes: [],
+                stats: {
+                    casesOpened: 0,
+                    totalItems: 0,
+                    uniqueItems: 0,
+                    totalValue: 0
+                },
+                collection: []
+            };
+            
+            localStorage.setItem('caseUser', JSON.stringify(userState));
+            showMainContent();
+            showAuthMessage('Регистрация успешна! Вам начислено 16 монет.', 'success');
+        }
+
+        function logout() {
+            userState.isLoggedIn = false;
+            localStorage.setItem('caseUser', JSON.stringify(userState));
+            authSection.style.display = 'block';
+            mainContent.style.display = 'none';
+            usernameInput.value = '';
+            passwordInput.value = '';
+        }
+
+        function showMainContent() {
+            authSection.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Обновляем информацию о пользователе
+            coinsCount.textContent = userState.coins;
+            userName.textContent = userState.username;
+            
+            // Загружаем кейсы, инвентарь и коллекцию
+            loadCases();
+            loadInventory();
+            loadCollection();
+            loadStats();
+            loadUsedPromocodes();
+        }
+
+        function loadCases() {
+            casesContainer.innerHTML = '';
+            
+            gameData.cases.forEach(caseItem => {
+                const caseElement = document.createElement('div');
+                caseElement.className = 'case';
+                caseElement.innerHTML = `
+                    <div class="case-icon">${caseItem.icon}</div>
+                    <div class="case-name">${caseItem.name}</div>
+                    <div class="case-price">${caseItem.price} монет</div>
+                    <button class="open-case-btn" data-case-id="${caseItem.id}" ${userState.coins < caseItem.price ? 'disabled' : ''}>
+                        Открыть
+                    </button>
+                `;
+                
+                casesContainer.appendChild(caseElement);
+                
+                // Добавляем обработчик открытия кейса
+                const openBtn = caseElement.querySelector('.open-case-btn');
+                openBtn.addEventListener('click', () => openCase(caseItem.id));
+            });
+        }
+
+        function loadInventory() {
+            inventoryContainer.innerHTML = '';
+            
+            if (userState.inventory.length === 0) {
+                inventoryContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 30px;">Ваш инвентарь пуст</p>';
+                return;
+            }
+            
+            userState.inventory.forEach((item, index) => {
+                const itemData = gameData.items.find(i => i.id === item.id);
+                if (!itemData) return;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = `inventory-item ${itemData.rarity}`;
+                itemElement.innerHTML = `
+                    <div class="item-icon">${itemData.icon}</div>
+                    <div class="item-name">${itemData.name}</div>
+                    <div class="item-rarity ${itemData.rarity}">${getRarityName(itemData.rarity)}</div>
+                    <div class="item-value">Цена: ${itemData.value} монет</div>
+                    <button class="sell-btn" data-item-index="${index}">Продать</button>
+                `;
+                
+                inventoryContainer.appendChild(itemElement);
+                
+                // Добавляем обработчик продажи предмета
+                const sellBtn = itemElement.querySelector('.sell-btn');
+                sellBtn.addEventListener('click', () => sellItem(index));
+            });
+        }
+
+        function loadCollection() {
+            collectionContainer.innerHTML = '';
+            
+            gameData.items.forEach(item => {
+                const isOwned = userState.collection.includes(item.id);
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = `collection-item ${item.rarity} ${isOwned ? 'owned' : ''}`;
+                itemElement.innerHTML = `
+                    <div class="item-icon">${item.icon}</div>
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-rarity ${item.rarity}">${getRarityName(item.rarity)}</div>
+                    <div class="item-value">${isOwned ? 'Получен' : 'Не получен'}</div>
+                `;
+                
+                collectionContainer.appendChild(itemElement);
+            });
+        }
+
+        function loadStats() {
+            totalCases.textContent = userState.stats.casesOpened;
+            totalItems.textContent = userState.stats.totalItems;
+            uniqueItems.textContent = userState.stats.uniqueItems;
+            totalValue.textContent = userState.stats.totalValue;
+        }
+
+        function loadUsedPromocodes() {
+            usedPromocodesContainer.innerHTML = '';
+            
+            if (userState.usedPromocodes.length === 0) {
+                usedPromocodesContainer.innerHTML = '<p>Вы еще не активировали ни одного промокода</p>';
+                return;
+            }
+            
+            userState.usedPromocodes.forEach(code => {
+                const promocodeElement = document.createElement('div');
+                promocodeElement.className = 'inventory-item';
+                promocodeElement.innerHTML = `
+                    <div class="item-icon">🎁</div>
+                    <div class="item-name">${code}</div>
+                    <div class="item-value">Активирован</div>
+                `;
+                
+                usedPromocodesContainer.appendChild(promocodeElement);
+            });
+        }
+
+        function openCase(caseId) {
+            const caseData = gameData.cases.find(c => c.id === caseId);
+            if (!caseData || userState.coins < caseData.price) return;
+            
+            currentCaseId = caseId;
+            
+            // Подготавливаем рулетку
+            prepareRoulette();
+            
+            // Показываем окно открытия кейса
+            caseOpening.classList.add('active');
+            caseResult.textContent = '';
+            spinRouletteBtn.disabled = false;
+        }
+
+        function prepareRoulette() {
+            rouletteSlider.innerHTML = '';
+            rouletteItems = [];
+            
+            // Добавляем много случайных предметов для эффекта прокрутки
+            for (let i = 0; i < 50; i++) {
+                const randomItem = getRandomItem();
+                rouletteItems.push(randomItem);
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = `roulette-item ${randomItem.rarity}`;
+                itemElement.innerHTML = `
+                    <div class="item-icon">${randomItem.icon}</div>
+                    <div class="item-name">${randomItem.name}</div>
+                `;
+                
+                rouletteSlider.appendChild(itemElement);
+            }
+        }
+
+        function spinRoulette() {
+            if (isSpinning) return;
+            
+            const caseData = gameData.cases.find(c => c.id === currentCaseId);
+            if (!caseData || userState.coins < caseData.price) return;
+            
+            // Списываем монеты
+            userState.coins -= caseData.price;
+            updateCoins();
+            
+            isSpinning = true;
+            spinRouletteBtn.disabled = true;
+            
+            // Определяем выигрышный предмет
+            const winChance = Math.random() * 100;
+            let winningItem;
+            
+            if (winChance < 1) {
+                // 1% шанс на мифический предмет
+                winningItem = getRandomItemByRarity('mythical');
+            } else if (winChance < 5) {
+                // 4% шанс на легендарный предмет
+                winningItem = getRandomItemByRarity('legendary');
+            } else if (winChance < 15) {
+                // 10% шанс на эпический предмет
+                winningItem = getRandomItemByRarity('epic');
+            } else if (winChance < 40) {
+                // 25% шанс на редкий предмет
+                winningItem = getRandomItemByRarity('rare');
+            } else if (winChance < 70) {
+                // 30% шанс на необычный предмет
+                winningItem = getRandomItemByRarity('uncommon');
+            } else {
+                // 30% шанс на обычный предмет
+                winningItem = getRandomItemByRarity('common');
+            }
+            
+            // Добавляем выигрышный предмет в конец рулетки
+            rouletteItems.push(winningItem);
+            
+            const itemElement = document.createElement('div');
+            itemElement.className = `roulette-item ${winningItem.rarity}`;
+            itemElement.innerHTML = `
+                <div class="item-icon">${winningItem.icon}</div>
+                <div class="item-name">${winningItem.name}</div>
+            `;
+            
+            rouletteSlider.appendChild(itemElement);
+            
+            // Анимация прокрутки рулетки
+            const itemWidth = 170; // Ширина элемента + отступы
+            const targetPosition = -(rouletteItems.length - 5) * itemWidth;
+            
+            rouletteSlider.style.transition = 'transform 5s cubic-bezier(0.1, 0.7, 0.3, 1)';
+            rouletteSlider.style.transform = `translateX(${targetPosition}px)`;
+            
+            // По завершении анимации
+            setTimeout(() => {
+                // Подсвечиваем выигрышный предмет
+                const items = rouletteSlider.querySelectorAll('.roulette-item');
+                if (items.length > 0) {
+                    items[items.length - 1].classList.add('active');
+                }
+                
+                // Добавляем предмет в инвентарь
+                userState.inventory.push({ id: winningItem.id });
+                
+                // Обновляем коллекцию
+                if (!userState.collection.includes(winningItem.id)) {
+                    userState.collection.push(winningItem.id);
+                }
+                
+                // Обновляем статистику
+                userState.stats.casesOpened++;
+                userState.stats.totalItems++;
+                userState.stats.uniqueItems = userState.collection.length;
+                userState.stats.totalValue += winningItem.value;
+                
+                // Сохраняем состояние
+                saveUserState();
+                
+                // Обновляем интерфейс
+                loadCases();
+                loadStats();
+                
+                // Показываем анимацию выигрыша
+                showWinAnimation(winningItem);
+                
+                isSpinning = false;
+            }, 5000);
+        }
+
+        function showWinAnimation(item) {
+            winIcon.textContent = item.icon;
+            winItemName.textContent = item.name;
+            winText.textContent = `Вы получили: ${getRarityName(item.rarity)} предмет!`;
+            
+            winAnimation.classList.add('active');
+            
+            setTimeout(() => {
+                winAnimation.classList.remove('active');
+            }, 3000);
+        }
+
+        function getRandomItem() {
+            const randomIndex = Math.floor(Math.random() * gameData.items.length);
+            return gameData.items[randomIndex];
+        }
+
+        function getRandomItemByRarity(rarity) {
+            const itemsOfRarity = gameData.items.filter(item => item.rarity === rarity);
+            const randomIndex = Math.floor(Math.random() * itemsOfRarity.length);
+            return itemsOfRarity[randomIndex];
+        }
+
+        function getRarityName(rarity) {
+            const names = {
+                common: "Обычный",
+                uncommon: "Необычный",
+                rare: "Редкий",
+                epic: "Эпический",
+                legendary: "Легендарный",
+                mythical: "Мифический"
+            };
+            return names[rarity] || rarity;
+        }
+
+        function sellItem(itemIndex) {
+            const item = userState.inventory[itemIndex];
+            const itemData = gameData.items.find(i => i.id === item.id);
+            
+            if (!itemData) return;
+            
+            // Удаляем предмет из инвентаря
+            userState.inventory.splice(itemIndex, 1);
+            
+            // Добавляем монеты
+            userState.coins += itemData.value;
+            
+            // Сохраняем состояние
+            saveUserState();
+            
+            // Обновляем интерфейс
+            updateCoins();
+            loadCases();
+            loadInventory();
+            loadStats();
+        }
+
+        function activatePromocode() {
+            const code = promocodeInput.value.trim().toUpperCase();
+            
+            if (!code) {
+                showPromocodeMessage('Введите промокод', 'error');
+                return;
+            }
+            
+            if (userState.usedPromocodes.includes(code)) {
+                showPromocodeMessage('Этот промокод уже использован', 'error');
+                return;
+            }
+            
+            const promocode = gameData.promocodes.find(p => p.code === code);
+            
+            if (!promocode) {
+                showPromocodeMessage('Неверный промокод', 'error');
+                return;
+            }
+            
+            // Активируем промокод
+            userState.coins += promocode.coins;
+            userState.usedPromocodes.push(code);
+            
+            // Сохраняем состояние
+            saveUserState();
+            
+            // Обновляем интерфейс
+            updateCoins();
+            loadCases();
+            loadUsedPromocodes();
+            
+            showPromocodeMessage(`Промокод активирован! Получено ${promocode.coins} монет.`, 'success');
+            promocodeInput.value = '';
+        }
+
+        function switchTab(tabId) {
+            // Убираем активный класс со всех вкладок и контента
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Активируем выбранную вкладку и контент
+            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+            
+            // Если переключились на инвентарь или коллекцию, обновляем их
+            if (tabId === 'inventory') {
+                loadInventory();
+            } else if (tabId === 'collection') {
+                loadCollection();
+            }
+        }
+
+        function updateCoins() {
+            coinsCount.textContent = userState.coins;
+        }
+
+        function saveUserState() {
+            // Сохраняем состояние текущего пользователя
+            localStorage.setItem('caseUser', JSON.stringify(userState));
+            
+            // Обновляем данные в общем хранилище пользователей
+            const users = JSON.parse(localStorage.getItem('caseUsers') || '{}');
+            if (users[userState.username]) {
+                users[userState.username] = {
+                    ...users[userState.username],
+                    coins: userState.coins,
+                    inventory: userState.inventory,
+                    usedPromocodes: userState.usedPromocodes,
+                    stats: userState.stats,
+                    collection: userState.collection
+                };
+                localStorage.setItem('caseUsers', JSON.stringify(users));
+            }
+        }
+
+        function showAuthMessage(message, type) {
+            authMessage.textContent = message;
+            authMessage.className = `message ${type}`;
+        }
+
+        function showPromocodeMessage(message, type) {
+            promocodeMessage.textContent = message;
+            promocodeMessage.className = `message ${type}`;
+        }
+    </script>
+</body>
+</html>
